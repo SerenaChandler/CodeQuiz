@@ -1,0 +1,12 @@
+start off by making different containers in the html. a button to start the quiz, and then a few more containers to house the questions
+use css to style the containers. This can happen in a few different ways. Probably just text centering and adjusting font size.
+create a few different arrays, each containing a question, and 4 potential answers with 1 correct one. 
+use the set interval method to create a timer, and set the starting time to 100 seconds.
+use an event listener to begin the timer when the start button is clicked.
+set a local variable for score which begins at zero
+the same event listener will also take the questions and answers from the arrays, and use a .textcontent method to place them into the html.
+using if statements, I will determine if the right answer was clicked, using additional event listeners.
+if the right asnwer if clicked, score will become score++, and text that says correct will show up on screen.
+if the wrong answer is clicked, score will remain unaffected, and the global variable for timer will become timer = timer -10
+using another if statement, I will check if all the questions are answered, or if the timer has hit zero. both will end the quiz, and take the user to a results screen. I will also set the final score in the local memory of the browser.
+the results page will have an input area for initials, which will also be set locally.
