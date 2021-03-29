@@ -2,9 +2,11 @@ var startButton = document.querySelector("#start")
 var question = document.querySelector("#question")
 var answersList = document.querySelector("#answers")
 var timerAmount = document.querySelector(".timerCounter")
+var a1 = document.createElement("div");
+var a2 = document.createElement("div");
+var a3 = document.createElement("div");
 
-
-
+var i = 0
 var chosenQuestion;
 var score = 0;
 var timer;
@@ -39,7 +41,7 @@ var myQuestions = [
     correctAnswer: "add interactible elements to a page"
   }
 ];
-localStorage.setItem("myQuestions", JSON.stringify(myQuestions));
+
 
 function startQuiz() {
   startButton.disabled = true;
@@ -47,7 +49,10 @@ function startQuiz() {
   timerCounter = 60;
   startTimer()
   renderQuestions()
-  a1.addEventListener("click")
+  console.log(a1)
+  a1.addEventListener("click", winCheck)
+  a2.addEventListener("click", winCheck)
+  a3.addEventListener("click", winCheck)
   
   
 }
@@ -70,15 +75,13 @@ function startTimer() {
   function renderQuestions() {
     answersList.innerHTML = "";
 
-    var r = Math.floor(Math.random()*3)
+      
 
-    var a1 = document.createElement("div");
-    var a2 = document.createElement("div");
-    var a3 = document.createElement("div");
-    question.textContent = myQuestions[r].question;
-    a1.textContent = myQuestions[r].answers.a;
-    a2.textContent = myQuestions[r].answers.b;
-    a3.textContent = myQuestions[r].answers.c;
+   
+    question.textContent = myQuestions[i].question;
+    a1.textContent = myQuestions[i].answers.a;
+    a2.textContent = myQuestions[i].answers.b;
+    a3.textContent = myQuestions[i].answers.c;
 
     answersList.setAttribute("style", "margin-top: 20px")
     a1.setAttribute("class", "questionA")
@@ -91,11 +94,18 @@ function startTimer() {
     answersList.appendChild(a1);
     answersList.appendChild(a2);
     answersList.appendChild(a3);
+    i++
     
   }
+
+
   function winCheck() {
-  
+    
+    renderQuestions()
   }
+
+
+
 
   function correct() {
 
@@ -104,6 +114,8 @@ function startTimer() {
 
 
 startButton.addEventListener("click", startQuiz)
+
+
   
 
 
