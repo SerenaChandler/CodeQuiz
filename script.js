@@ -2,9 +2,12 @@ var startButton = document.querySelector("#start")
 var question = document.querySelector("#question")
 var answersList = document.querySelector("#answers")
 var timerAmount = document.querySelector(".timerCounter")
+var pointsList = document.querySelector(".finalScore")
 var a1 = document.createElement("div");
 var a2 = document.createElement("div");
 var a3 = document.createElement("div");
+var finalPoints = document.createElement("h1");
+
 
 var i = 0
 var chosenQuestion;
@@ -65,8 +68,9 @@ function startTimer() {
 
     timerAmount.textContent = timerCounter;
     
-    if (timerCounter <= 0) {
+    if (timerCounter <= 0 || i >= "3" ) {
       clearInterval(timer)
+      timerCounter.textContent = "game over"
     }
       
  }, 1000);
@@ -74,14 +78,16 @@ function startTimer() {
 
   function renderQuestions() {
     answersList.innerHTML = "";
-
+    console.log(i)
+    
       
 
-   
+    finalPoints.textContent = "your score is " + score
     question.textContent = myQuestions[i].question;
     a1.textContent = myQuestions[i].answers.a;
     a2.textContent = myQuestions[i].answers.b;
     a3.textContent = myQuestions[i].answers.c;
+
 
     answersList.setAttribute("style", "margin-top: 20px")
     a1.setAttribute("class", "questionA")
@@ -94,21 +100,42 @@ function startTimer() {
     answersList.appendChild(a1);
     answersList.appendChild(a2);
     answersList.appendChild(a3);
-    i++
+    pointsList.appendChild(finalPoints)
     
+    
+   
   }
 
 
   function winCheck() {
-    
-    renderQuestions()
+    i++
+
+    if (a1 == "python") {
+      correct()
+    }else {
+      incorrect()
+    }if (a2 == "cascading style sheets") {
+      correct()
+    }else {
+      incorrect()
+    }if (a3 == "add interactible elements to a page") {
+      correct()
+    }else (incorrect())
+
+
+
+    if (i <= "3"){ 
+    renderQuestions()}
+    correct()
   }
 
 
-
+  function incorrect() {
+    timerCounter = timerCounter - 10
+  }
 
   function correct() {
-
+    score++
   }
   
 
