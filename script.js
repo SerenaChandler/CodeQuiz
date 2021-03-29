@@ -1,6 +1,6 @@
 var startButton = document.querySelector("#start")
 var question = document.querySelector("#question")
-var answers = document.querySelector("#answers")
+var answersList = document.querySelector("#answers")
 var timerAmount = document.querySelector(".timerCounter")
 
 
@@ -11,7 +11,7 @@ var timer;
 var timerCounter;
 var myQuestions = [
   {
-    question: "which language is not used to build website?",
+    question: "which language is not used to build websites?",
     answers: {
       a: "HTML",
       b: "Python",
@@ -39,14 +39,14 @@ var myQuestions = [
     correctAnswer: "b"
   }
 ];
-
+localStorage.setItem("myQuestions", JSON.stringify(myQuestions));
 
 function startQuiz() {
   startButton.disabled = true;
   
   timerCounter = 60;
   startTimer()
-  
+  renderQuestions()
   
   
 }
@@ -67,11 +67,30 @@ function startTimer() {
 }
 
   function renderQuestions() {
+    answersList.innerHTML = "";
+
+    var r = Math.floor(Math.random()*3)
+
+    var a1 = document.createElement("li");
+    var a2 = document.createElement("li");
+    var a3 = document.createElement("li");
+    question.textContent = myQuestions[r].question;
+    a1.textContent = myQuestions[r].answers.a;
+    a2.textContent = myQuestions[r].answers.b;
+    a3.textContent = myQuestions[r].answers.c;
+
+
+    answersList.appendChild(a1);
+    answersList.appendChild(a2);
+    answersList.appendChild(a3);
     
-    answers.textContent = myQuestions }
+  }
   
 
 
 startButton.addEventListener("click", startQuiz)
-renderQuestions()
+  
 
+
+  
+  

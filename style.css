@@ -9,17 +9,35 @@ body {
     
 }
 
+.timer {
+    text-align: center;
+}
+
 .timerCounter {
+    
    font-size: 100px;
+}
+
+.questions {
+    text-align: center;
 }
 
 
 
+
+
+#question {
+    padding-right: 10px;
+    display: inline;
+    ;
+
+
+}
 button {
     font-size: 50px;
     position: absolute;
-    top: 20%;
-    right: 50%;
+    top: 80%;
+    left: 47%;
     
     
     
