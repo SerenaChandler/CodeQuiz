@@ -59,8 +59,9 @@ var myQuestions = [
 
 
 function startQuiz() {
+  score = 0
   startButton.disabled = true;
-  startButton.innerHTML = "";
+  startButton.setAttribute("style", "visibility: hidden");
   timerCounter = 60;
   startTimer()
   renderQuestions()
@@ -72,6 +73,13 @@ function startQuiz() {
   
 }
 
+function resetQuiz() {
+  localStorage.setItem("name", initial)
+  localStorage.setItem("score", score)
+  gameOverContainer.setAttribute("style", "visibility: hidden")
+  startButton.disabled = false;
+  startButton.setAttribute("style", "visibility: visible")
+}
 
 function startTimer() {
   timer = setInterval(function() {
@@ -146,6 +154,7 @@ function startTimer() {
 
 
 startButton.addEventListener("click", startQuiz)
+submitButton.addEventListener("click", resetQuiz)
 
 
   
