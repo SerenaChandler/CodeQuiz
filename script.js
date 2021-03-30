@@ -1,4 +1,4 @@
-var startButton = document.querySelector("#start")
+var startButton = document.querySelector(".button")
 var question = document.querySelector("#question")
 var answersList = document.querySelector("#answers")
 var timerAmount = document.querySelector(".timerCounter")
@@ -7,6 +7,9 @@ var a1 = document.createElement("div");
 var a2 = document.createElement("div");
 var a3 = document.createElement("div");
 var finalPoints = document.createElement("h1");
+var gameOver = document.createElement("h1")
+a1.setAttribute("data-win", "true")
+
 
 
 var i = 0
@@ -18,8 +21,8 @@ var myQuestions = [
   {
     question: "which language is NOT used to build websites?",
     answers: {
-      a: "HTML",
-      b: "Python",
+      a: "Python",
+      b: "HTML",
       c: "CSS"
     },
     correctAnswer: "Python"
@@ -36,8 +39,8 @@ var myQuestions = [
   {
     question: "What is Javascript used for?",
     answers: {
-      a: "Make a nice pot of coffee",
-      b: "add interactible elements to a page",
+      a: "add interactible elements to a page",
+      b: "make a nice of coffee",
       c: "Short for javaScripture, the digital bible",
     
     },
@@ -46,9 +49,10 @@ var myQuestions = [
 ];
 
 
+
 function startQuiz() {
   startButton.disabled = true;
-  
+  startButton.innerHTML = "";
   timerCounter = 60;
   startTimer()
   renderQuestions()
@@ -70,7 +74,10 @@ function startTimer() {
     
     if (timerCounter <= 0 || i >= "3" ) {
       clearInterval(timer)
-      timerCounter.textContent = "game over"
+      
+
+      
+
     }
       
  }, 1000);
@@ -78,7 +85,7 @@ function startTimer() {
 
   function renderQuestions() {
     answersList.innerHTML = "";
-    console.log(i)
+    console.log(score)
     
       
 
@@ -109,24 +116,14 @@ function startTimer() {
 
   function winCheck() {
     i++
-
-    if (a1 == "python") {
+    if ("data-win", "true") {
       correct()
     }else {
       incorrect()
-    }if (a2 == "cascading style sheets") {
-      correct()
-    }else {
-      incorrect()
-    }if (a3 == "add interactible elements to a page") {
-      correct()
-    }else (incorrect())
+    }
 
 
-
-    if (i <= "3"){ 
-    renderQuestions()}
-    correct()
+    renderQuestions()
   }
 
 
