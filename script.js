@@ -53,12 +53,21 @@ var myQuestions = [
     
     },
     correctAnswer: "add interactible elements to a page"
+  },
+  {
+    question: "",
+    answers: {
+      a: "",
+      b: "",
+      c: "",
+    },
   }
 ];
 
 
 
 function startQuiz() {
+  i = 0
   score = 0
   startButton.disabled = true;
   startButton.setAttribute("style", "visibility: hidden");
@@ -74,7 +83,7 @@ function startQuiz() {
 }
 
 function resetQuiz() {
-  localStorage.setItem("name", initial)
+  localStorage.setItem("name", initial.value())
   localStorage.setItem("score", score)
   gameOverContainer.setAttribute("style", "visibility: hidden")
   startButton.disabled = false;
@@ -142,13 +151,15 @@ function startTimer() {
   function incorrect() {
     timerCounter = timerCounter - 20
     i++
-    renderQuestions()
+    
+    renderQuestions() 
   }
 
   function correct() {
     score++
     i++
-    renderQuestions()
+    
+    renderQuestions() 
   }
   
 
