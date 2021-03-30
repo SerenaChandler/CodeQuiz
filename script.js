@@ -1,4 +1,7 @@
+var body = document.querySelector(".body")
 var startButton = document.querySelector(".button")
+var allTime = document.querySelector(".timer")
+var nameInput = document.querySelector(".initialInput")
 var question = document.querySelector("#question")
 var answersList = document.querySelector("#answers")
 var timerAmount = document.querySelector(".timerCounter")
@@ -8,7 +11,6 @@ var a2 = document.createElement("div");
 var a3 = document.createElement("div");
 var finalPoints = document.createElement("h1");
 var gameOver = document.createElement("h1")
-a1.setAttribute("data-win", "true")
 
 
 
@@ -57,9 +59,9 @@ function startQuiz() {
   startTimer()
   renderQuestions()
   console.log(a1)
-  a1.addEventListener("click", winCheck)
-  a2.addEventListener("click", winCheck)
-  a3.addEventListener("click", winCheck)
+  a1.addEventListener("click", correct)
+  a2.addEventListener("click", incorrect)
+  a3.addEventListener("click", incorrect)
   
   
 }
@@ -75,8 +77,11 @@ function startTimer() {
     if (timerCounter <= 0 || i >= "3" ) {
       clearInterval(timer)
       
-
-      
+      allTime.innerHTML = "";
+      question.innerHTML = "";
+      initialInput.textContent = "Enter your Initials Here";
+     
+   
 
     }
       
@@ -114,25 +119,19 @@ function startTimer() {
   }
 
 
-  function winCheck() {
-    i++
-    if ("data-win", "true") {
-      correct()
-    }else {
-      incorrect()
-    }
 
-
-    renderQuestions()
-  }
 
 
   function incorrect() {
     timerCounter = timerCounter - 10
+    i++
+    renderQuestions()
   }
 
   function correct() {
     score++
+    i++
+    renderQuestions()
   }
   
 
