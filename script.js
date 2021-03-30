@@ -1,7 +1,7 @@
 var body = document.querySelector(".body")
 var startButton = document.querySelector(".button")
 var allTime = document.querySelector(".timer")
-var nameInput = document.querySelector(".initialInput")
+
 var question = document.querySelector("#question")
 var answersList = document.querySelector("#answers")
 var timerAmount = document.querySelector(".timerCounter")
@@ -11,6 +11,12 @@ var a2 = document.createElement("div");
 var a3 = document.createElement("div");
 var finalPoints = document.createElement("h1");
 var gameOver = document.createElement("h1")
+var gameOverContainer = document.querySelector(".initial")
+gameOver.textContent = "please enter initials"
+var initial = document.createElement("input")
+initial.setAttribute("style", "position: absolute; top: 50%; right: 47%")
+var submitButton = document.createElement("button")
+submitButton.textContent = "Submit"
 
 
 
@@ -79,9 +85,12 @@ function startTimer() {
       
       allTime.innerHTML = "";
       question.innerHTML = "";
-      initialInput.textContent = "Enter your Initials Here";
-     
-   
+      
+    
+      
+      gameOverContainer.appendChild(initial)
+      gameOverContainer.appendChild(submitButton)
+      gameOverContainer.appendChild(gameOver)
 
     }
       
@@ -123,7 +132,7 @@ function startTimer() {
 
 
   function incorrect() {
-    timerCounter = timerCounter - 10
+    timerCounter = timerCounter - 20
     i++
     renderQuestions()
   }
