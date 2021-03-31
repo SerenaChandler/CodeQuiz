@@ -17,6 +17,7 @@ var initial = document.createElement("input")
 initial.setAttribute("style", "position: absolute; top: 50%; right: 47%")
 var submitButton = document.createElement("button")
 submitButton.textContent = "Submit"
+var scoreArray = JSON.parse(localStorage.getItem("score")) || []
 
 
 
@@ -54,14 +55,8 @@ var myQuestions = [
     },
     correctAnswer: "add interactible elements to a page"
   },
-  {
-    question: "",
-    answers: {
-      a: "",
-      b: "",
-      c: "",
-    },
-  }
+  
+  
 ];
 
 
@@ -83,8 +78,10 @@ function startQuiz() {
 }
 
 function resetQuiz() {
-  localStorage.setItem("name", initial.value())
-  localStorage.setItem("score", score)
+  scoreArray.push({user:initial.value,score:score})
+  localStorage.setItem("score", JSON.stringify(scoreArray))
+  
+  
   gameOverContainer.setAttribute("style", "visibility: hidden")
   startButton.disabled = false;
   startButton.setAttribute("style", "visibility: visible")
@@ -97,7 +94,7 @@ function startTimer() {
 
     timerAmount.textContent = timerCounter;
     
-    if (timerCounter <= 0 || i >= "3" ) {
+    if (timerCounter <= 0 || i > 2 ) {
       clearInterval(timer)
       
       allTime.innerHTML = "";
